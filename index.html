@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Acceso LAN Party</title>
+
+<style>
+    body{
+        margin:0;
+        background:#111827;
+        color:#f9fafb;
+        font-family:Arial, sans-serif;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        height:100vh;
+        overflow:hidden;
+    }
+
+    .login-box{
+        background:#1f2937;
+        padding:40px;
+        border-radius:20px;
+        width:340px;
+        box-shadow:0 0 40px rgba(0,0,0,0.5);
+        text-align:center;
+        position:relative;
+    }
+
+    h1{
+        margin-top:0;
+        color:#60a5fa;
+    }
+
+    .subtitle{
+        font-size:14px;
+        opacity:0.8;
+        margin-bottom:25px;
+    }
+
+    input{
+        width:100%;
+        padding:14px;
+        margin-bottom:15px;
+        border:none;
+        border-radius:10px;
+        font-size:16px;
+        background:#374151;
+        color:white;
+        box-sizing:border-box;
+    }
+
+    button{
+        width:100%;
+        padding:14px;
+        border:none;
+        border-radius:10px;
+        background:#2563eb;
+        color:white;
+        font-size:16px;
+        font-weight:bold;
+        cursor:pointer;
+        transition:0.2s;
+    }
+
+    button:hover{
+        background:#1d4ed8;
+    }
+
+    .error{
+        margin-top:20px;
+        background:#7f1d1d;
+        padding:15px;
+        border-radius:10px;
+        display:none;
+        animation:shake 0.3s;
+    }
+
+    .final{
+        display:none;
+        margin-top:20px;
+        background:#14532d;
+        padding:20px;
+        border-radius:15px;
+        animation:pop 0.4s ease;
+    }
+
+    .small{
+        margin-top:18px;
+        font-size:12px;
+        opacity:0.6;
+    }
+
+    .counter{
+        margin-top:10px;
+        color:#fca5a5;
+        font-size:14px;
+    }
+
+    @keyframes shake{
+        0%{transform:translateX(0);}
+        25%{transform:translateX(-5px);}
+        50%{transform:translateX(5px);}
+        75%{transform:translateX(-5px);}
+        100%{transform:translateX(0);}
+    }
+
+    @keyframes pop{
+        from{
+            transform:scale(0.8);
+            opacity:0;
+        }
+        to{
+            transform:scale(1);
+            opacity:1;
+        }
+    }
+</style>
+</head>
+
+<body>
+
+<div class="login-box">
+
+    <h1>🎮 LAN PARTY LOGIN</h1>
+
+    <div class="subtitle">
+        Introduce tu email y contraseña
+    </div>
+
+    <input
+        type="text"
+        id="email"
+        value="pacoharto@gmail.com"
+        placeholder="Email"
+    >
+
+    <input
+        type="password"
+        id="password"
+        placeholder="Contraseña"
+    >
+
+    <button onclick="login()">
+        Conectarse
+    </button>
+
+    <div class="counter" id="counter">
+        Intentos fallidos: 43
+    </div>
+
+    <div class="error" id="error"></div>
+
+    <div class="final" id="final">
+        <h2>✅ ACCESO CONCEDIDO</h2>
+
+        <p>
+            Bienvenido de nuevo,
+            <br>
+            <strong>Paco Harto</strong>
+        </p>
+
+        <p>
+            Han pasado años...
+            <br>
+            pero seguimos esperando a que pongas bien la contraseña.
+        </p>
+
+        <p style="font-size:50px;">🍻</p>
+    </div>
+
+    <div class="small">
+        Servidor oficial de la desesperación personal de Carlos Mogueira Nazaira
+    </div>
+
+</div>
+
+<script>
+
+let attempts = 0;
+
+const mensajes = [
+    "❌ Contraseña incorrecta",
+    "❌ Email incorrecto",
+    "❌ Caps Lock activado",
+    "❌ Usuario no encontrado",
+    "❌ Has olvidado la contraseña otra vez",
+    "❌ Creando nuevo email...",
+    "❌ Bienvenido Paco Harto",
+    "❌ Demasiados intentos",
+    "❌ El grupo ya está jugando sin ti"
+];
+
+function login(){
+
+    attempts++;
+
+    document.getElementById("counter").innerText =
+        "Intentos fallidos: " + (43 + attempts);
+
+    if(attempts < 7){
+
+        const random =
+            mensajes[Math.floor(Math.random()*mensajes.length)];
+
+        const error = document.getElementById("error");
+
+        error.style.display = "block";
+        error.innerHTML = random;
+
+    }else{
+
+        document.getElementById("error").style.display = "none";
+
+        document.getElementById("final").style.display = "block";
+    }
+}
+
+</script>
+
+</body>
+</html>
